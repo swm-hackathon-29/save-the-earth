@@ -6,7 +6,9 @@ const API_KEY_ENC = process.env.NEXT_PUBLIC_API_KEY_ENC
 const API_KEY_DEC = process.env.NEXT_PUBLIC_API_KEY_DEC
 
 async function fetchCities() {
-  const cities = []
+  const cities = await redis.getAsync('cities') || []
+  if (cities.length > 0)
+    return cities
   for (let page = 1; ; ++page) {
     const {data: citiesRes} = await axios.get(`${API_BASE_URL}/getCityList`, {
       params: {
@@ -19,14 +21,11 @@ async function fetchCities() {
       break
     cities.push(...citiesRes.data.list)
   }
-  return cities
+  await redis.setAsync('cities', JSON.stringify(cities), 'EX', 60 * 60 * 24)
+  return JSON.parse(cities)
 }
 
 export default async (req, res) => {
-  let cities = await redis.getAsync('cities')
-  if (cities === null) {
-    cities = await fetchCities()
-    await redis.setAsync('cities', JSON.stringify(cities), 'EX', 60 * 60 * 24)
-  }
+  const cities = await fetchCities()
   return res.status(200).json(cities)
 }
