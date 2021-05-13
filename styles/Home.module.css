@@ -119,3 +119,25 @@
     flex-direction: column;
   }
 }
+
+.map {
+  width: 500px;
+  height: 500px;
+  background-color: rgba(50, 10, 10, 0.5);
+}
+
+.sideBarLeft {
+  margin: 5% ;
+  position: fixed;
+  left: 0;
+}
+.sideBarRight {
+  margin: 5%;
+  position: fixed;
+  right: 0;
+}
+
+.c {
+  border: solid 1px;
+  padding: 25px;
+}
