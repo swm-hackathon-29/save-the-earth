@@ -10,17 +10,17 @@ async function fetchCities() {
   if (Object.keys(cities).length > 0)
     return cities
   for (let page = 1; ; ++page) {
-    const {data: citiesRes} = await axios.get(`${API_BASE_URL}/getCityList`, {
+    const {data: {data: citiesRes}} = await axios.get(`${API_BASE_URL}/getCityList`, {
       params: {
         'ServiceKey': API_KEY_DEC,
         'type': 'json',
         page,
       }
     })
-    if (citiesRes.data.list.length == 0)
+    if (citiesRes.list === null || citiesRes.list.length == 0)
       break
-    for (const city of citiesRes.data.list)
-      cities[city.cityCode] = {sidoName: city.citySidoName, sggName: city.citySggName}
+    for (const city of citiesRes.list)
+      cities[city.cityCode] = city
   }
   await redis.setAsync('cities', JSON.stringify(cities), 'EX', 60 * 60 * 24)
   return cities
