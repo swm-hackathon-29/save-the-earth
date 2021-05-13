@@ -41,10 +41,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 /apartments/<city>
 
 ### 하나의 아파트(or 공공건물) 정보
-/apartments/<city>
+/apartments/<city>/<apartment>
 
 ### 종합(일, 월)
-/wastes?year=<year>&month=<month>=total=<boolean>
+/wastes?year=<year>&month=<month>&total=<boolean>
 
 ### 지자체별 전체(일, 월)
 /wastes/all?year=<year>&month=<month>&total=<boolean>
