@@ -1,6 +1,5 @@
 const axios = require('axios').default;
 const redis = require('../../../src/clients').redis
-const KNN = require('ml-knn')
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 const API_KEY_ENC = process.env.NEXT_PUBLIC_API_KEY_ENC
 const API_KEY_DEC = process.env.NEXT_PUBLIC_API_KEY_DEC
@@ -46,14 +45,14 @@ async function fetchApartmentsByCity(cityCode) {
         break;
       for (const apartmentDetail of apartmentDetailsRes.list) {
         const latitude = Number(apartmentDetail.ylatlng || -1) 
-        const longtitude = Number(apartmentDetail.xlatlng || -1)
+        const longitude = Number(apartmentDetail.xlatlng || -1)
         delete apartmentDetail.ylatlng
         delete apartmentDetail.xlatlng
         apartments[apartmentDetail.aptCode] = {
           ...apartments[apartmentDetail.aptCode],
           ...apartmentDetail,
           latitude,
-          longtitude
+          longitude
         }
       }
     } catch (err) {
@@ -63,13 +62,13 @@ async function fetchApartmentsByCity(cityCode) {
   }
 
   const apartmentList = Object.values(apartments)
-  const coordinatedApartments = apartmentList.filter((apartment) => apartment.latitude >= 0 && apartment.longtitude >= 0)
+  const coordinatedApartments = apartmentList.filter((apartment) => apartment.latitude >= 0 && apartment.longitude >= 0)
   const meanCoords = coordinatedApartments
-    .reduce((sumCoords, apartment) => [sumCoords[0] + apartment.latitude, sumCoords[1] + apartment.longtitude], [0, 0])
+    .reduce((sumCoords, apartment) => [sumCoords[0] + apartment.latitude, sumCoords[1] + apartment.longitude], [0, 0])
     .map((sumCoord) => sumCoord / coordinatedApartments.length)
-  for (const apartment of apartmentList.filter((apartment) => apartment.latitude < 0 || apartment.longtitude < 0)) {
+  for (const apartment of apartmentList.filter((apartment) => apartment.latitude < 0 || apartment.longitude < 0)) {
     apartment.latitude = meanCoords[0]
-    apartment.longtitude = meanCoords[1]
+    apartment.longitude = meanCoords[1]
   }
   
   redis.hmsetAsync('apartments', cityCode, JSON.stringify(apartments))

@@ -26,35 +26,36 @@ function latLongToXyz(coords) {
 }
 
 // https://datascience.stackexchange.com/questions/13567/ways-to-deal-with-longitude-latitude-feature
-function getNeighborApartments(latitude, longtitude, neighbors, apartments) {
+function getNeighborApartments(latitude, longitude, neighbors, apartments) {
   let apartmentLocations = []
   const apartmentCodes = []
   for (const apartment of Object.values(apartments)) {
-    if (apartment.latitude && apartment.longtitude && apartment.latitude >= 0 && apartment.longtitude >= 0) {
-      apartmentLocations.push(latLongToXyz([apartment.latitude, apartment.longtitude]))
+    if (apartment.latitude && apartment.longitude && apartment.latitude >= 0 && apartment.longitude >= 0) {
+      apartmentLocations.push(latLongToXyz([apartment.latitude, apartment.longitude]))
       apartmentCodes.push(apartment.aptCode)
     }
   }
 
   const neighborAptCodes = []
   for (let k = 1; k < neighbors + 1; ++k) {
+    if (apartmentCodes.length === 0)
+      break
     const knn = new KNN(apartmentLocations, apartmentCodes, { k })
-    neighborAptCodes.push(...knn.predict([latLongToXyz([latitude, longtitude])]))
+    neighborAptCodes.push(...knn.predict([latLongToXyz([latitude, longitude])]))
   }
   const neighborApartments = {}
   for (const aptCode of neighborAptCodes)
     neighborApartments[aptCode] = apartments[aptCode]
-  console.log(neighborApartments)
   return neighborApartments
 }
 
 export default async (req, res) => {
   const apartments = await fetchAllApartments()
   const latitude = req.query.latitude
-  const longtitude = req.query.longtitude
+  const longitude = req.query.longitude
   const neighbors = Number(req.query.neighbors || 1)
-  if (latitude && longtitude)
-    return res.status(200).json(getNeighborApartments(Number(latitude), Number(longtitude), neighbors, apartments))
+  if (latitude && longitude)
+    return res.status(200).json(getNeighborApartments(Number(latitude), Number(longitude), neighbors, apartments))
   return res.status(200).json(apartments)
 }
 

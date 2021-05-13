@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -21,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MyAppBar(props) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+          <IconButton edge="start" className={classes.menuButton} color="inherit">
+            <Avatar src='https://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/256/earth-icon.png' />
           </IconButton>
+
           <Typography variant="h6" className={classes.title}>
             { props.title }
           </Typography>

@@ -4,7 +4,7 @@ const redis = require('../../../../src/clients').redis
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 const API_KEY_ENC = process.env.NEXT_PUBLIC_API_KEY_ENC
 const API_KEY_DEC = process.env.NEXT_PUBLIC_API_KEY_DEC
-const fetchApartments = require('../../apartments/[city]').fetchApartments
+const fetchApartmentsByCity = require('../../apartments/[city]').fetchApartmentsByCity
 
 async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
   const redisKey = 'apartment_wastes'
@@ -46,7 +46,7 @@ async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
 
 async function fetchAllApartmentsWastes(disYear, disMonth, cityCode) {
   return Promise.all(
-    Object.keys(await fetchApartments(cityCode))
+    Object.keys(await fetchApartmentsByCity(cityCode))
     .flatMap(async (aptCode) => (await fetchApartmentWastes(disYear, disMonth, cityCode, aptCode)))
   )
 }

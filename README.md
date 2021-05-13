@@ -38,7 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 /cities
 
 ### 전국 혹은 근처 아파트 목록(간혹 공공건물 포함)
-/apartments?latitude=`<latitude>`&longtitude=`<longtitude>`&neighbors=`<integer>`
+/apartments?latitude=`<latitude>`&longitude=`<longitude>`&neighbors=`<integer>`
 
 ### 지자체 내 아파트 목록(간혹 공공건물 포함)
 /apartments/`<city>`
