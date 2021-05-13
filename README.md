@@ -37,23 +37,26 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ### 지자체 목록
 /cities
 
+### 전국 아파트 목록(간혹 공공건물 포함)
+/apartments
+
 ### 지자체 내 아파트 목록(간혹 공공건물 포함)
-/apartments/<city>
+/apartments/`<city>`
 
 ### 하나의 아파트(or 공공건물) 정보
-/apartments/<city>/<apartment>
+/apartments/`<city>`/`<apartment>`
 
 ### 종합(일, 월)
-/wastes?year=<year>&month=<month>&total=<boolean>
+/wastes?year=`<year>`&month=`<month>`&total=`<boolean>`
 
 ### 지자체별 전체(일, 월)
-/wastes/all?year=<year>&month=<month>&total=<boolean>
+/wastes/all?year=`<year>`&month=`<month>`&total=`<boolean>`
 
 ### 지자체별(일, 월)
-/wastes/<city>?year=<year>&month=<month>&total=<boolean>
+/wastes/`<city>`?year=`<year>`&month=`<month>`&total=`<boolean>`
 
 ### 지자체 내 아파트전체(일, 월)
-/wastes/<city>/all?year=<year>&month=<month>&total=<boolean>
+/wastes/`<city>`/all?year=`<year>`&month=`<month>`&total=`<boolean>`
 
 ### 아파트별(일,월)
-/wastes/<city>/<apartment>?year=<year>&month=<month>&total=<boolean>
+/wastes/`<city>`/`<apartment>`?year=`<year>`&month=`<month>`&total=`<boolean>`
