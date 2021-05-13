@@ -1,8 +1,44 @@
+import { style } from 'd3'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    function geoFindMe() {
+
+      const status = document.querySelector('#status');
+      const mapLink = document.querySelector('#map-link');
+    
+      mapLink.href = '';
+      mapLink.textContent = '';
+    
+      function success(position) {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+    
+        status.textContent = '';
+        mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+        mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+      }
+    
+      function error() {
+        status.textContent = 'Unable to retrieve your location';
+      }
+    
+      if(!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+      } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+    
+    }
+    
+    document.querySelector('#find-me').addEventListener('click', geoFindMe);
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,44 +47,54 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={styles.haederInner}>
+        <span>대충 아무요소</span>
+        <span>대충 아무요소</span>
+        <span>대충 아무요소</span>
+      </div>
       <main className={styles.main}>
+        
+
         <h1 className={styles.title}>
-          지구를 지켜라! 
+        지구를 지켜라
         </h1>
+        <button id = "find-me">Show my location</button><br/>
+        <p id = "status"></p>
+        <a id = "map-link" target="_blank"></a>
+        
+        <div className={styles.section}>
+          <div className={styles.cont}> 
+            <div className={styles.topRank}>
+              <div className={styles.c}>
+                TOP 3
+              </div>
+              <div>
+                <div className={styles.c}>
+                  지자체
+                </div><div className={styles.c}>
+                  아파트
+                </div> 
+              </div>
+            </div>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+            <div className={styles.map}>
+              지도
+            </div>
+          </div>
+        </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.box}>
+          <div>
+            <div className={styles.c}>아파트 주소</div>
+            <div className={styles.c}>우리동네 어쩌구</div>
+            </div>
+            <div className={styles.c}>
+                <span >뉴스</span>
+                <ul>  
+                  <li >뉴스1</li>
+                <li>뉴스2</li>
+              </ul>
+          </div>
         </div>
       </main>
 
