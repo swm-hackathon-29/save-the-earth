@@ -20,6 +20,9 @@
 
 ## 구현 
 <img src = "https://github.com/swm-hackathon-29/save-the-earth/blob/main/public/front.png" height="50%" width="50%"></br>
+1. 첫 화면에서 전국 지자체 별 1인당 음식물 쓰레기 배출량을 색으로 표시
+2. 자신이 접속한 위치를 토대로 해당 아파트를 찾아서 클릭 버튼과 함께 생성
+3. 버튼을 클릭 시 사용자 주변 지역 아파트에서 가장 적은 음식물 쓰레기량을 발생시키는 아파트 순위를 
 
 ---
 #### 지자체 목록
