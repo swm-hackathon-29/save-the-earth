@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
+import { Map } from 'components/korea.html'
+
 
 export default function Home() {
   useEffect(() => {
