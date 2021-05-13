@@ -34,12 +34,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ---
+### 지자체 목록
+/cities
+
+### 지자체 내 아파트 목록(간혹 공공 건물 포함)
+/apartments/<city>
 
 ### 종합(일, 월)
-/wastes/
+/wastes?year=<year>&month=<month>=total=<boolean>
 
 ### 지자체별 전체(일, 월)
-/wastes/all
+/wastes/all?year=<year>&month=<month>&total=<boolean>
 
 ### 지자체별(일, 월)
 /wastes/<city>?year=<year>&month=<month>&total=<boolean>
