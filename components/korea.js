@@ -8,11 +8,11 @@ export default function korea() {
     const svg = d3.select("#area");
 
 
-    var width = 500; //지도의 넓이
-    var height = 500; //지도의 높이
+    var width = 700; //지도의 넓이
+    var height = 700; //지도의 높이
     var initialScale = 5500; //확대시킬 값
-    var initialX = -10900; //초기 위치값 X
-    var initialY = 4000; //초기 위치값 Y
+    var initialX = -11900; //초기 위치값 X
+    var initialY = 4050; //초기 위치값 Y
     var labels;
 
     var projection = d3.geo.mercator()
@@ -27,14 +27,6 @@ export default function korea() {
 	.scale(projection.scale())
         .scaleExtent([height, 800 * height])
         .on('zoom', zoom);
-
-//    var svg = d3
-//        .select(target)
-//        .append('svg')
-//        .attr('width', width + 'px')
-//        .attr('height', height + 'px')
-//        .attr('id', 'map')
-//        .attr('class', 'map');
 
     var states = svg
         .append('g')
@@ -55,14 +47,6 @@ export default function korea() {
   	.attr("y",20)
   	.attr("width",170)
   	.attr("hieight",10)
-
-    //geoJson데이터를 파싱하여 지도그리기
-   // d3.json('json/korea.json', function(error, json) {
-   //  d3.json("file.json").then(function(json){
-    //    console.log(error);
-//	console.log(json);
-//	document.write(json);
-
 	
 	states
             .selectAll('path') //지역 설정
@@ -89,7 +73,6 @@ export default function korea() {
             .text(function(d) {
                 return d.properties.name;
             })
-  //  });
 
     //텍스트 위치 조절 - 하드코딩으로 위치 조절을 했습니다.
     function translateTolabel(d) {
@@ -136,7 +119,7 @@ export default function korea() {
   }, []);
   return (
     <div className="korea">
-      <svg id="area" height={500} width={500}></svg>
+      <svg id="area" height={700} width={700}></svg>
     </div>
   );
 }
