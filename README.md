@@ -32,3 +32,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+###
+
+종합
+/wastes/total
+지자체전체리스트
+/wastes/
+지자체별
+/wastes/<city>/total
+아파트전체리스트
+/wastes/<city>
+아파트별
+/wastes/<city>/<apartment>
