@@ -47,37 +47,55 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={styles.haederInner}>
+        <span>대충 아무요소</span>
+        <span>대충 아무요소</span>
+        <span>대충 아무요소</span>
+      </div>
       <main className={styles.main}>
+        
+
         <h1 className={styles.title}>
-          지구를 지켜라
+        지구를 지켜라
         </h1>
         <button id = "find-me">Show my location</button><br/>
         <p id = "status"></p>
         <a id = "map-link" target="_blank"></a>
         
-        <div className={styles.map}>
-          지도
+        <div className={styles.section}>
+          <div className={styles.cont}> 
+            <div className={styles.topRank}>
+              <div className={styles.c}>
+                TOP 3
+              </div>
+              <div>
+                <div className={styles.c}>
+                  지자체
+                </div><div className={styles.c}>
+                  아파트
+                </div> 
+              </div>
+            </div>
+
+            <div className={styles.map}>
+              지도
+            </div>
+          </div>
         </div>
-        
-        <div className={styles.sideBarLeft}>
-            <div>
-              <div className={styles.c}>아파트 주소</div>
-              <div className={styles.c}>우리동네 어쩌구</div>
+
+        <div className={styles.box}>
+          <div>
+            <div className={styles.c}>아파트 주소</div>
+            <div className={styles.c}>우리동네 어쩌구</div>
             </div>
             <div className={styles.c}>
                 <span >뉴스</span>
-                <ul>
+                <ul>  
                   <li >뉴스1</li>
-                  <li>뉴스2</li>
-                </ul>
-            </div>
+                <li>뉴스2</li>
+              </ul>
+          </div>
         </div>
-        
-        <div className={styles.sideBarRight}>
-            rank
-        </div>
-        
-
       </main>
 
       <footer className={styles.footer}>
