@@ -1,10 +1,10 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 const API_KEY_ENC = process.env.NEXT_PUBLIC_API_KEY_ENC
 const API_KEY_DEC = process.env.NEXT_PUBLIC_API_KEY_DEC
-const fetchApartments = require('../[city]').fetchApartments
+const fetchApartmentsByCity = require('../[city]').fetchApartmentsByCity
 
 async function fetchApartment(cityCode, aptCode) {
-  return (await fetchApartments(cityCode))[aptCode] || null
+  return (await fetchApartmentsByCity(cityCode))[aptCode] || null
 }
 
 export default async (req, res) => {

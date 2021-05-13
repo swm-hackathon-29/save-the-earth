@@ -34,7 +34,7 @@ async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
         break
       wastes.push(...wastesRes.list)
     } catch (err) {
-      console.log(err.response.data)
+      console.log(err.response?.data)
       break
     }
   }
