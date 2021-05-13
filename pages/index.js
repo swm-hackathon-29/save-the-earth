@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
-import drawMap from 'components/korea'
+import Ex from '../components/korea'
 
 
 export default function Home() {
@@ -78,10 +78,9 @@ export default function Home() {
                 </div> 
               </div>
             </div>
-
-            <div className={styles.map}>
-              <korea />
-            </div>
+	    <div>
+              <Ex />
+	    </div>
           </div>
         </div>
 

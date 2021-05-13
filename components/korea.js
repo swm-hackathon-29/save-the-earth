@@ -1,41 +1,45 @@
-import Link from 'next/link';
+import React, { useEffect } from 'react';
 import * as d3 from 'd3';
+import * as input from './json/korea.json';
 
 //지도 그리기
-export default function drawMap(target) {
-    var width = 700; //지도의 넓이
-    var height = 700; //지도의 높이
+export default function korea() {
+  useEffect(() => {
+    const svg = d3.select("#area");
+
+
+    var width = 500; //지도의 넓이
+    var height = 500; //지도의 높이
     var initialScale = 5500; //확대시킬 값
-    var initialX = -11900; //초기 위치값 X
-    var initialY = 4050; //초기 위치값 Y
+    var initialX = -10900; //초기 위치값 X
+    var initialY = 4000; //초기 위치값 Y
     var labels;
 
-    var projection = d3.geo
-        .mercator()
+    var projection = d3.geo.mercator()
         .scale(initialScale)
         .translate([initialX, initialY]);
+
     var path = d3.geo.path().projection(projection);
+
     var zoom = d3.behavior
-        .zoom()
-        .translate(projection.translate())
-        .scale(projection.scale())
+	.zoom()
+	.translate(projection.translate())
+	.scale(projection.scale())
         .scaleExtent([height, 800 * height])
         .on('zoom', zoom);
 
-    var svg = d3
-        .select(target)
-        .append('svg')
-        .attr('width', width + 'px')
-        .attr('height', height + 'px')
-        .attr('id', 'map')
-        .attr('class', 'map');
+//    var svg = d3
+//        .select(target)
+//        .append('svg')
+//        .attr('width', width + 'px')
+//        .attr('height', height + 'px')
+//        .attr('id', 'map')
+//        .attr('class', 'map');
 
     var states = svg
         .append('g')
         .attr('id', 'states')
         .call(zoom);
-
-    
 
     states
         .append('rect')
@@ -46,17 +50,23 @@ export default function drawMap(target) {
 
     //Color Bar
     states.append("image")
- 	.attr("xlink:href","../img/map1.png")
+ 	.attr("xlink:href","/map1.png")
   	.attr("x",20)
   	.attr("y",20)
   	.attr("width",170)
   	.attr("hieight",10)
 
     //geoJson데이터를 파싱하여 지도그리기
-    d3.json('json/korea.json', function(json) {
-        states
+   // d3.json('json/korea.json', function(error, json) {
+   //  d3.json("file.json").then(function(json){
+    //    console.log(error);
+//	console.log(json);
+//	document.write(json);
+
+	
+	states
             .selectAll('path') //지역 설정
-            .data(json.features)
+            .data(input.features)
             .enter()
             .append('path')
             .attr('d', path)
@@ -67,7 +77,7 @@ export default function drawMap(target) {
 
         labels = states
             .selectAll('text')
-            .data(json.features) //라벨표시
+            .data(input.features) //라벨표시
             .enter()
             .append('text')
             .attr('transform', translateTolabel)
@@ -79,7 +89,7 @@ export default function drawMap(target) {
             .text(function(d) {
                 return d.properties.name;
             })
-    });
+  //  });
 
     //텍스트 위치 조절 - 하드코딩으로 위치 조절을 했습니다.
     function translateTolabel(d) {
@@ -122,4 +132,12 @@ export default function drawMap(target) {
         states.selectAll('path').attr('d', path);
         labels.attr('transform', translateTolabel);
     }
-};
+
+  }, []);
+  return (
+    <div className="korea">
+      <svg id="area" height={500} width={500}></svg>
+    </div>
+  );
+}
+
