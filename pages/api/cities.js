@@ -30,3 +30,5 @@ export default async (req, res) => {
   const cities = await fetchCities()
   return res.status(200).json(cities)
 }
+
+module.exports.fetchCities = fetchCities
