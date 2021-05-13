@@ -28,7 +28,9 @@ async function fetchApartments(cityCode) {
 }
 
 export default async (req, res) => {
-  const cityCode = req.query.id
+  const cityCode = req.query.city
   const apartments = await fetchApartments(cityCode)
   return res.status(200).json(apartments)
 }
+
+module.exports.fetchApartments = fetchApartments

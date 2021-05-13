@@ -35,10 +35,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ---
 
-### 종합(일)
+### 종합(일, 월)
 /wastes/
 
-### 지자체전체리스트(일)
+### 지자체별 전체(일, 월)
 /wastes/all
 
 ### 지자체별(일, 월)
