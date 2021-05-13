@@ -1,3 +1,4 @@
+import { style } from 'd3'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -13,43 +14,35 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          지구를 지켜라! 
+          지구를 지켜라
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <button id = "find-me">Show my location</button><br/>
+        <p id = "status"></p>
+        <a id = "map-link" target="_blank"></a>
+        
+        <div className={styles.map}>
+          지도
         </div>
+        
+        <div className={styles.sideBarLeft}>
+            <div>
+              <div className={styles.c}>아파트 주소</div>
+              <div className={styles.c}>우리동네 어쩌구</div>
+            </div>
+            <div className={styles.c}>
+                <span >뉴스</span>
+                <ul>
+                  <li >뉴스1</li>
+                  <li>뉴스2</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div className={styles.sideBarRight}>
+            rank
+        </div>
+        
+
       </main>
 
       <footer className={styles.footer}>
