@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
+import drawMap from 'components/korea'
+
 
 export default function Home() {
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function Home() {
             </div>
 
             <div className={styles.map}>
-              지도
+              <korea />
             </div>
           </div>
         </div>
