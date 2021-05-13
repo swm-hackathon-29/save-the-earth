@@ -4,8 +4,31 @@ import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import MyAppBar from '../components/MyAppBar'
 import MyList from '../components/MyList'
+import axios from 'axios'
 
-export default function Home() {
+export async function getServerSideProps(context) {
+  console.log(context.req.headers.host)
+  const date = new Date()
+  
+  let topCities = []
+  while (topCities.length === 0 && date.getFullYear() > 2018) {
+    topCities = (await axios.get(`http://${context.req.headers.host}/api/wastes/all`, {
+      params: {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1
+      }
+    }))
+    .data
+    .filter((city) => Object.values(city)[0].length > 0)
+    .flatMap((city) => Object.values(city)[0][0])
+    .sort((a, b) => b.disDate - a.disDate)
+    date.setMonth(date.getMonth() - 1)
+    console.log(topCities)
+  }
+  return { props: { topCities } }
+}
+
+export default function Home(props) {
   useEffect(() => {/*
     function geoFindMe() {
 
@@ -55,8 +78,8 @@ export default function Home() {
         <button id = "find-me">Show my location</button><br/>
         <p id = "status"></p>
         <a id = "map-link" target="_blank"></a>
-        <MyList title={'TOP3 도시'} items={
-          ['AAA시', 'BBB시', 'CCC시'].map((title) => ({title: title}))
+        <MyList title={'월간 TOP10 도시'} items={
+          props.topCities.slice(0, 10).map((city) => ({title: `${city.citySidoName} ${city.citySggName}`}))
         }/>
         <MyList/>
       </main>
