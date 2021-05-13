@@ -7,7 +7,11 @@ const API_KEY_DEC = process.env.NEXT_PUBLIC_API_KEY_DEC
 const fetchApartments = require('../../apartments/[city]').fetchApartments
 
 async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
-  let wastes = JSON.parse(await redis.hgetAsync('apartment_wastes', aptCode))
+  const redisKey = 'apartment_wastes'
+  const redisField = `${aptCode}:${disYear}:${disMonth}`
+  let wastes = JSON.parse(await redis.hgetAsync(
+    redisKey, redisField
+  ))
 
   if (wastes !== null)
     return {[aptCode]: wastes}
@@ -35,7 +39,7 @@ async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
     }
   }
   wastes.sort((a, b) => b.disDate - a.disDate)
-  await redis.hmsetAsync('apartment_wastes', aptCode, JSON.stringify(wastes))
+  await redis.hmsetAsync(redisKey, redisField, JSON.stringify(wastes))
 
   return {[aptCode]: wastes}
 }
