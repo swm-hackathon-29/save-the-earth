@@ -55,7 +55,7 @@
 
 
 ### 멤버
-이병곤 - 퇴근알람</br>
-신민영 - 야민정음 번역기</br>
-최연석 - 마법의 소라고동</br>
+이병곤 - 백엔드</br>
+신민영 - 프론트엔드</br>
+최연석 - 프론트엔드</br>
 <a href="https://www.notion.so/SWM-29-ee896ced876d4d5ea3877b9fd94c7615" style="color: black;">기획 노션</a>
