@@ -44,8 +44,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ### 지자체별(일)
 /wastes/<city>
 
-### 아파트전체리스트
-/wastes/<city>/all
+### 지자체 내 아파트전체(일, 월)
+/wastes/<city>/all?year=<year>&month=<month>&total=<boolean>
 
 ### 아파트별(일,월)
 /wastes/<city>/<apartment>?year=<year>&month=<month>&total=<boolean>
