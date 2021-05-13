@@ -1,9 +1,8 @@
-window.onload = function() {
-    drawMap('#container');
-};
+import Link from 'next/link';
+import * as d3 from 'd3';
 
 //지도 그리기
-function drawMap(target) {
+export default function drawMap(target) {
     var width = 700; //지도의 넓이
     var height = 700; //지도의 높이
     var initialScale = 5500; //확대시킬 값
@@ -123,4 +122,4 @@ function drawMap(target) {
         states.selectAll('path').attr('d', path);
         labels.attr('transform', translateTolabel);
     }
-}
+};
