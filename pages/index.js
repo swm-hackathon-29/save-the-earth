@@ -8,6 +8,14 @@ import Ex from '../components/korea'
 
 export default function Home() {
   useEffect(() => {
+    
+    //가장 음식물이 적은 지자체 찾기
+    function rankRegion() {
+    
+
+
+    } 
+
     function geoFindMe() {
 
       const status = document.querySelector('#status');

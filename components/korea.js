@@ -77,18 +77,18 @@ export default function korea() {
     //텍스트 위치 조절 - 하드코딩으로 위치 조절을 했습니다.
     function translateTolabel(d) {
         var arr = path.centroid(d);
-        if (d.properties.code == 31) {
+        if (d.properties.name == '인천광역시') {
             //서울 경기도 이름 겹쳐서 경기도 내리기
             arr[1] +=
                 d3.event && d3.event.scale
-                    ? d3.event.scale / height + 20
-                    : initialScale / height + 20;
-        } else if (d.properties.code == 34) {
+                    ? d3.event.scale / height-40
+                    : initialScale / height-40;
+        } else if (d.properties.name == '경기도') {
             //충남은 조금 더 내리기
             arr[1] +=
                 d3.event && d3.event.scale
-                    ? d3.event.scale / height + 10
-                    : initialScale / height + 10;
+                    ? d3.event.scale / height + 30
+                    : initialScale / height + 30;
         }
         return 'translate(' + arr + ')';
     }
