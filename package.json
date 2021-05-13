@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start"
   },
@@ -13,9 +13,22 @@
     "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "d3": "^6.7.0",
-    "next": "10.2.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "^10.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "redis": "^3.1.2"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swm-hackathon-29/save-the-earth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swm-hackathon-29/save-the-earth/issues"
+  },
+  "homepage": "https://github.com/swm-hackathon-29/save-the-earth#readme"
 }
