@@ -19,7 +19,7 @@
 4. 아파트 세대수 및 좌표 목록
 
 ## 구현 
-<img src = "https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2ab5ef2a-21d1-4c04-8149-50ad42e85da6%2F001.png?table=block&id=47b7caf9-7262-4f85-9400-44fea532aaeb&width=2520&userId=ec834ace-50e4-4101-a555-0e3139500ef9&cache=v2" height="50%" width="50%"></br>
+<img src = "https://github.com/swm-hackathon-29/save-the-earth/blob/main/public/front.png" height="50%" width="50%"></br>
 
 ---
 #### 지자체 목록
