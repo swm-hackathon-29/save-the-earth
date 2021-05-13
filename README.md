@@ -35,17 +35,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ---
 
-### 종합
-/wastes/total
-
-### 지자체전체리스트
+### 종합(일)
 /wastes/
 
-### 지자체별
-/wastes/<city>/total
+### 지자체전체리스트(일)
+/wastes/all
 
-### 아파트전체리스트
+### 지자체별(일)
 /wastes/<city>
 
-### 아파트별
-/wastes/<city>/<apartment>
+### 아파트전체리스트
+/wastes/<city>/all
+
+### 아파트별(일,월)
+/wastes/<city>/<apartment>?year=<year>&month=<month>&total=<boolean>

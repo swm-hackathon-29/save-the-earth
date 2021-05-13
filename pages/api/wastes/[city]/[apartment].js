@@ -20,7 +20,6 @@ async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
         page,
       }
     })
-    console.log(wastesRes)
     if (wastesRes.list === null || wastesRes.list.length == 0)
       break;
     wastes.push(...wastesRes.list)
@@ -28,17 +27,26 @@ async function fetchApartmentWastes(disYear, disMonth, cityCode, aptCode) {
   return wastes.sort((a, b) => b.disDate - a.disDate)
 }
 
+async function fetchApartmentWasteOfMonth(disYear, disMonth, cityCode, aptCode) {
+  const wastes = await fetchApartmentWastes(disYear, disMonth, cityCode, aptCode)
+  return wastes.slice(1).reduce((a, b, idx, wastes) => ({
+    ...a,
+    disQuantity: a.disQuantity + b.disQuantity,
+    disQuantityRate: a.disQuantityRate * (wastes.length - 1) / wastes.length + b.disQuantityRate / wastes.length,
+    disCount: a.disCount + b.disCount,
+    disCountRate: a.disCountRate * (wastes.length - 1) / wastes.length + b.disCountRate / wastes.length
+  }), wastes[0])
+  || []
+}
+
 export default async (req, res) => {
   const date = new Date()
   const year = String(req.query.year || date.getFullYear()).padStart(4, '0')
   const month = String(req.query.month || date.getMonth() + 1).padStart(2, '0')
+  const total = Boolean(req.query.total || false)
   const city = req.query.city
   const apartment = req.query.apartment
-  const wastes = await fetchApartmentWastes(
-    year,
-    month,
-    city,
-    apartment
-  )
+  const wastes = total ? (await fetchApartmentWasteOfMonth(year, month, city, apartment))
+    : (await fetchApartmentWastes(year, month, city, apartment))
   return res.status(200).json(wastes)
 }
