@@ -1,11 +1,30 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as input from './json/korea.json';
+import axios from "axios";
 
 //지도 그리기
 export default function korea() {
   useEffect(() => {
     const svg = d3.select("#area");
+
+
+    var levelOne = ['전라남도', '경상남도', '강원도'];
+        var levelTwo = ['충청북도', '전라북도', '경상북도'];
+        var levelThree = ['경기도', '대전광역시', '울산광역시']
+        var levelFour = ['서울특별시', '인천광역시',
+        '대구광역시', '부산광역시', '세종특별자치시'];
+
+    const url = '/api/wastes/all?year=2021&month=2&total=true';
+    axios.get('url')
+        .then(function (res) {
+		levelOne.push('충청남도');        
+
+	}).catch(function (error) {
+	}).then(function() {
+		levelOne.push('충청남도');
+	});
+   //levelOne.push('충청남도'); 
 
 
     var width = 700; //지도의 넓이
@@ -95,11 +114,11 @@ export default function korea() {
     
     //배출량에 따라서 지자체의 색을 결정
     function colorMap(d){
-	var levelOne = ['전라남도', '경상남도', '강원도'];
-        var levelTwo = ['충청북도', '전라북도', '경상북도'];
-	var levelThree = ['경기도', '대전광역시', '울산광역시']
-	var levelFour = ['서울특별시', '인천광역시', 
-	'대구광역시', '부산광역시', '세종특별자치시'];
+//	var levelOne = ['전라남도', '경상남도', '강원도'];
+     //   var levelTwo = ['충청북도', '전라북도', '경상북도'];
+//	var levelThree = ['경기도', '대전광역시', '울산광역시']
+//	var levelFour = ['서울특별시', '인천광역시', 
+//	'대구광역시', '부산광역시', '세종특별자치시'];
         if(levelOne.includes(d.properties.name))
 	   return '#008000';
 	else if(levelTwo.includes(d.properties.name))
