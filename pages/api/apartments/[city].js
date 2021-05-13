@@ -44,9 +44,15 @@ async function fetchApartmentsByCity(cityCode) {
       if (apartmentDetailsRes.list === null || apartmentDetailsRes.list.length == 0)
         break;
       for (const apartmentDetail of apartmentDetailsRes.list) {
+        const latitude = Number(apartmentDetail.ylatlng || 0)
+        const longtitude = Number(apartmentDetail.xlatlng || 0)
+        delete apartmentDetail.ylatlng
+        delete apartmentDetail.xlatlng
         apartments[apartmentDetail.aptCode] = {
           ...apartments[apartmentDetail.aptCode],
-          ...apartmentDetail
+          ...apartmentDetail,
+          latitude,
+          longtitude
         }
       }
     } catch (err) {
