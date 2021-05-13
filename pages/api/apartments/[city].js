@@ -26,7 +26,7 @@ async function fetchApartmentsByCity(cityCode) {
       for (const apartment of apartmentsRes.list)
         apartments[apartment.aptCode] = apartment
     } catch (err) {
-      console.log(err.response.data)
+      console.log(err.response?.data)
       break
     }
   }
@@ -50,7 +50,7 @@ async function fetchApartmentsByCity(cityCode) {
         }
       }
     } catch (err) {
-      console.log(err.response.data)
+      console.log(err.response?.data)
       break
     }
   }
