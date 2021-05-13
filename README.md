@@ -33,15 +33,19 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-###
+---
 
-종합
+### 종합
 /wastes/total
-지자체전체리스트
+
+### 지자체전체리스트
 /wastes/
-지자체별
+
+### 지자체별
 /wastes/<city>/total
-아파트전체리스트
+
+### 아파트전체리스트
 /wastes/<city>
-아파트별
+
+### 아파트별
 /wastes/<city>/<apartment>
