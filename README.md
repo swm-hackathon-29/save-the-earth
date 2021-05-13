@@ -37,7 +37,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ### 지자체 목록
 /cities
 
-### 지자체 내 아파트 목록(간혹 공공 건물 포함)
+### 지자체 내 아파트 목록(간혹 공공건물 포함)
+/apartments/<city>
+
+### 하나의 아파트(or 공공건물) 정보
 /apartments/<city>
 
 ### 종합(일, 월)
