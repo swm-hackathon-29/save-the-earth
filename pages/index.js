@@ -5,6 +5,7 @@ import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import MyAppBar from '../components/MyAppBar'
 import MyList from '../components/MyList'
+import Container from '@material-ui/core/Container';
 import axios from 'axios'
 
 export async function getServerSideProps(context) {
@@ -65,7 +66,7 @@ export default function Home(props) {
       </Head>
 
       <MyAppBar title="지구를 지켜라!"/>
-      <main>
+      <Container maxWidth="sm" align="center">
         <Button variant="contained">
           { coords ? `${coords.latitude}, ${coords.longitude} ${myApt?.aptName}` : '위치 찾기' }
         </Button>
@@ -82,7 +83,7 @@ export default function Home(props) {
           .map((city) => ({title: `${city.citySidoName} ${city.citySggName}`}))
         }/>
         <MyList/>
-      </main>
+      </Container>
     </>
   )
 }
