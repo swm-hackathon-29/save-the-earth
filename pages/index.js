@@ -30,6 +30,7 @@ export async function getServerSideProps(context) {
 export default function Home(props) {
   const [coords, setCoords] = useState(null)
   const [myApt, setMyApt] = useState(null)
+  const [neighbors, setNeighbors] = useState([])
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -42,6 +43,13 @@ export default function Home(props) {
             neighbors: 1
           }
         }).then((res) => setMyApt(Object.values(res.data)[0]))
+        axios.get(`http://${location.host}/api/apartments`, {
+          params: {
+            latitude,
+            longitude,
+            neighbors: 10
+          }
+        }).then((res) => setNeighbors(Object.values(res.data)))
         .catch((err) => alert(err.data))
       },
       () => alert('Unable to use Geo API')
@@ -61,6 +69,11 @@ export default function Home(props) {
         <Button variant="contained">
           { coords ? `${coords.latitude}, ${coords.longitude} ${myApt?.aptName}` : '위치 찾기' }
         </Button>
+
+        <MyList title={'내 근처 아파트'} items={
+          neighbors
+          .map((apt) => ({title: `${apt.aptName}`}))
+        }/>
 
         <MyList title={'월간 TOP10 도시'} items={
           props
