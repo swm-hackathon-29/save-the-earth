@@ -13,17 +13,21 @@ export async function getServerSideProps(context) {
   
   let topCities = []
   while (topCities.length === 0 && date.getFullYear() > 2018) {
-    topCities = (await axios.get(`http://${context.req.headers.host}/api/wastes/all`, {
-      params: {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1
-      }
-    }))
-    .data
-    .filter((city) => Object.values(city)[0].length > 0)
-    .flatMap((city) => Object.values(city)[0][0])
-    .sort((a, b) => b.disDate - a.disDate)
-    date.setMonth(date.getMonth() - 1)
+    try {
+      topCities = (await axios.get(`http://${context.req.headers.host}/api/wastes/all`, {
+        params: {
+          year: date.getFullYear(),
+          month: date.getMonth() + 1
+        }
+      }))
+      .data
+      .filter((city) => Object.values(city)[0].length > 0)
+      .flatMap((city) => Object.values(city)[0][0])
+      .sort((a, b) => b.disDate - a.disDate)
+      date.setMonth(date.getMonth() - 1)
+    } catch (err) {
+      console.log(err)
+    }
   }
   return { props: { topCities } }
 }
@@ -44,6 +48,7 @@ export default function Home(props) {
             neighbors: 1
           }
         }).then((res) => setMyApt(Object.values(res.data)[0]))
+        .catch(console.log)
         axios.get(`http://${location.host}/api/apartments`, {
           params: {
             latitude,
@@ -51,7 +56,7 @@ export default function Home(props) {
             neighbors: 10
           }
         }).then((res) => setNeighbors(Object.values(res.data)))
-        .catch((err) => alert(err.data))
+        .catch(console.log)
       },
       () => alert('Unable to use Geo API')
     );
